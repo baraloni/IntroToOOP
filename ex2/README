@@ -1,0 +1,89 @@
+baraloni
+
+bar aloni
+
+=============================
+=      File description     =
+=============================
+README: this file
+SpaceShip.java:  
+ * this is an abstract class,defining a SpaceShip.
+ * a SpaceShip has a max and current levels of energy which constantly change(default at initialization).
+ * it also has an initial and current health level (only the current changes).
+ * it holds a SpaceShipPhysics object that determines the physical state of spaceship
+ * (its position, direction, speed).
+ * it can fire, shield itself, teleport itself,collide, take a hit (shot or collision with other),
+ * die and restart.
+ SpaceShipFactory. java: class that creates instances ot SpaceShipe types.
+ Types:
+Basher.jave: Basher Class instance of SpaceShip Class.
+Aggressive.java: Aggressive Class instance of SpaceShip Class.
+Special.java: Special Class instance of SpaceShip Class.
+Drunkard.java: Drunkard Class instance of SpaceShip Class.
+Human.java: Human Class instance of SpaceShip Class.
+Runner.java: Runner Class instance of SpaceShip Class.
+
+
+=============================
+=          Design           =
+=============================
+I implemented the SpaceShip Class as an abstarct class. i wrote functions and set constants that are common to all space ships 
+( the ones i needed to implement: with same health enery, respond to collision and so). in  a way that every subclass is very close to origion
+(super class). i used sub class overriding methods, and super methods from instances. 
+
+
+
+=============================
+=  Implementation details   =
+=============================
+the main function (doAction) is the biggest difference between all ships types,
+ and it is the most importand method, so i chose to make it abstract.
+
+
+=============================
+=    Answers to questions   =
+=============================
+• Explain your design. What were your considerations?
+
+# i implemented the game by making SpaceShip an abstract class.
+ 	it is reasonable because all ships has the same charectarictis: health, energy, ability to fire etc..
+	and they are instances of a SpaceShip!
+
+ What are your design’s advantages and disadvantages in terms of:
+– Extensibility - The ability to add new functionality or features.
+ – Modularity - The degree to which the program divides to distinct components which interact via their API.
+ – Intuitiveness and understandability - Note that a program’s understandability does not refer to the code’s readability, but rather to the ease of understanding how the program is built and designed.
+ – Representation of the classes and their relationships - Both the choice of what concepts and constructs are represented by classes and the relationships between these classes make sense. 
+ 
+ # advantages:
+ – Extensibility - if the extantion regards all classes (or most of them) by extanding the super class it is very easy to do so.
+	if it is extandion of a specific code ot class, you get a direct access to it also.
+– Intuitiveness and understandability - as i mantioned all ships types are instances of SpaceShip, so it is intuitive.
+	all implemented in the spaceship class (all charectaristics, methods..), and every ship is slightly different,
+	so it changes or adds or doesnt use the code of the super class. therefore it is also readable.
+- Representation of the classes and their relationships- it is an abstract super class (the idea of a space ship with all its
+	functions and charectaristics). all sub classes are instance of which can override it, follow by it, but ever relying on it.
+	
+#disadvantages:
+ – Modularity - all featured controlled by SpeceShip. it has no division according to their roll. 
+	also because a class can inherite from one class only, it may be easy to implement all in super class but messy.
+	it would be preffered to divide methodes and field with interfaces.
+ – Intuitiveness and understandability- may be messy and confusing when ther are too much fields and methods at super class.
+
+ 
+ • Describe the behavior of the drunkard ship and special ship.
+
+ # Drunkard:
+ has one random object which supply both random int and random boolean. 
+ i implemented 2 methods which gets the next random according to type, because i thought it would
+ simplify the code itself and be useful to more implementations if there will be.
+the Drunkard "choses" which action to take this round: fire, shield, teleport, accelerate etc, simply by randomizing (boolean).
+in order to make this ship more ealistic, and connected to the game i built 3 behaviours (about what turn to make):
+avoiding closest ship, rushing toward closest ship and randomizing direction. 
+
+# Special:
+i decideed on a ship which units all behiviours lf all ships. when it gets close to another ship it shields itself
+ to avoid collision and enery and health lost, when it faces another ship in a certain range of angles if fires at it.
+ when an enemy ship angles at her (difficult to respond) it teleports. and it always move next to other ships. therefore
+ it is harder to kill. 
+ 

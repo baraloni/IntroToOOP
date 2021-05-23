@@ -1,0 +1,67 @@
+baraloni
+
+Bar Aloni
+
+
+=============================
+=      File description     =
+=============================
+* Board.java - 
+The Board class represents a board of the Nim game. The board can be of a variable size.  
+* Move.java -  
+The Move class represents a move taken in a Nim competition, consisting of a row number and left and
+ right bounds.
+* Player.java - 
+The Player class represents a player in the Nim game, producing Moves as a response to a Board state.
+Each player is initialized with a type, either human or one of several computer strategies, which 
+defines the move he produces when given a board in some state.
+* Competition -
+The Competition class represents a Nim competition between two players, consisting of a given number 
+of rounds. It also keeps track of the number of victories of each player.
+
+
+=============================
+=          Design           =
+=============================
+I implemented:
+
+* Move class: created to serve as a communication tool from Player to Board. so i implemented it in a 
+basic and simple way.
+
+* Player:
+- random Player: simple implication, rendomizing 3 parameters: row, left limit in row, and sequence size, 
+until we get an valid move. no astretagy behind.
+- human Player: as mentioned in the instructions. implemented by  2 sided comunication between user and 
+computer (board, controlled by competition class).
+- smart Player:  at answers 
+
+*competition: divided to methods so it will be easier to understand each step in a competition, and later modify:
+- turn: actions by order 
+- playRound: switching turns until match is over (helping methods: switchTurn, turn) and keeping scores 
+ (helping methods: updateScore) 
+-playmultiple: conductiong a competition: round by round.
+
+
+
+=============================
+=  Implementation details   =
+=============================
+i chose to implement the random by randomize 3 parameters to increases its randomality, yet keeping it simple and clear.
+the smart player i chose to not randomize because in is not necassery where it chose to start the sequece, but the size of it.
+it is simpler to check every valid index, so its move will be educated.
+the permanent parametes (messeges) are writen outside so its easier to change them.   
+
+=============================
+=    Answers to questions   =
+=============================
+
+1) the astretagy behind the smart player is as follows: 
+if we have an unequal number of unmarked sticks, the player wil try to mark the first and maximal equal sequence it can find .
+if the board consists of an equal number of unmarked sticks, it will try to mark the first and maximal un-equal sequence it encounters.
+thirs strategy forces the opponent to mark the remaining sticks which are almost alwaya are of an unequal size 
+(when the optimal occurence is that the remaining stick is the last one, and our player will win).
+the algorithem iterates on a specific row at a time, and its sticks, and stops at the first valid(unmarked) one it encounters.
+when is finds the first sequence in the right "size"(equal or unequal) it returns it as a move.
+if it doesnt find any sequense it the right "size" (in the manner of equality), it returns the last valid move it finds.
+therefore, it will allways return a valid move, and return a not optimal one only when forced.
+ 

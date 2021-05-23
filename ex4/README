@@ -1,0 +1,72 @@
+baraloni
+Bar Aloni
+
+
+=============================
+=      File description     =
+=============================
+AvlTree.java -
+ represents an Avl tree, which  is composed of Node Objects, each holds a different key (int).
+ AVL tree holds 2 properties:
+ 1) for any node, the left subtree is of lower key then node, and the all nodes in the right
+ subtree are of grater key.
+ 2)the heights of the two child subtrees of any node-
+ differ by at most one.
+ if at any time they differ by more than one, re balancing is done to restore this property.
+ Nodes can be added or deleted from the AVL tree, always keeping these 2 properties.
+ It has a has a root (Node) and a size, and more methods in the API.
+ for further info: https://en.wikipedia.org/wiki/AVL_tree. 
+Node.java - 
+ represent a TreeNode. it holds a key (that defines the Node and cannot be changed),
+ left and  right sons, and  a parent.
+
+=============================
+=          Design           =
+=============================
+*i implemented a Node class that constructs the AvlTree.
+the Node class is very basic. it has a key (first * in implementation details)
+a parent and left and right son. all methods are setters and getters to these fields.
+the AvlTree uses Node methods,in its methods to change the node status.
+
+*add :
+inserts the key in the right position (or doesnt if its already in it), by the method: insertNode.
+if the insertion was successful, it raises the size of the tree by 1, then calls the method rotate.
+(this methos is sheared also by delete). calls it by cases.
+
+*delete:
+detects the key and removes its node.
+then deters the tree size by 1 and call rotate by cases.
+
+* rotate:
+calculate the given node's balance factor ( by calling a method that counts the size of a
+ given node's subtree), by cases calls the metohs that preform the rotation.
+=============================
+=  Implementation details   =
+=============================
+*i chose not to make the keys node to be final, so every node object will represent a value,
+ instead of a specific location in tree.(can change often).
+* i chose not to split the AvlTree class to an abstract class BST, and make the AvlTree class inherit from it.
+basiclly from a lack of time. looking backward i would have chose to split this class to make it simpler.
+
+=============================
+=    Answers to questions   =
+=============================
+
+5.1)
+the following insertion of nums as follows: (left to right) [5,9,4,13,7,3,5,11,13,6,1,15]
+will create a balanced AVL tree of height 4.
+5.2.1)
+O(nlogn) 
+5.3.1)
+O(nlogn)
+5.3.2)
+the best possible running time complexity is O(N) and it is recived when running on a sorted array.
+ we pick the middle value, and insert in. by that we "split" the array: to a list of values that are
+ smaller than "mid", and a list of values that are bigger than "mid".
+ then we call the algorithem again on these 2 lists recursively, until we get to a list of size one.    
+5.4.1)
+O(2^n)
+5.4.2)
+O(h), recived by using memo, remembering all previous calculations in  an array, so that the next
+time this calculation will appear (it appears a lot of times because this is a recursive algorithm)
+we can derive its outcome from the array. 

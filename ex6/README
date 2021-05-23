@@ -1,0 +1,52 @@
+baraloni
+
+baraloni
+
+
+=============================
+=      File description     =
+=============================
+1. Parser.java - reads the lines from the sjava file, and creates an object that
+    can handle with the matched line, by calling the ValidityChecks. 
+2. ValidityChecks - commits all the checks the parser called for.
+3. VariavleFactory - creates objects of Variables according to the sjava line he gets.
+4. Variables - creates an object of variable
+    CharVariables - creates an object of char variable
+    BooleanVariable - creates an object of boolean variable
+    DoubleVariable - creates an object of double variable
+    intVariable - creates an object of int variable
+    StringVariable - creates an object of String variable
+    MethodScope - holds the 
+    Scope - holds an object of scope with all his parameters
+    Exception - creates an object of exception. all the exceptions implements it.
+    Sjavac - the main method.
+
+=============================
+=          Design           =
+=============================
+We have designes our program so it would fit the design patterns that were learned in class.
+We orgenaized it so every class has her oun duty:
+The parser reads the lines from the sjava file, and sends it to ValidityChecks that can 
+handle every line sented from the parser, with the help of additional methods, such as
+ variableFromLine, assignmentFromLine, and each method can make her duty thank to regex-
+a regular expresion was learned in class.
+In addition, thare are more classes such as VariableFactory, which her duty is to create a 
+variable from sjava line, and send it to the class Variable, and some more classes of 
+different types of variable implements from her.
+
+
+
+=============================
+=  Implementation details   =
+=============================
+Where the exception occurs - there is a possibility to try another thing, so we used
+"try" and "catch".
+for example in CheckValidity we need that one of the two options will occur:
+Type/Scope.
+But when we enter one, it throws an exception. In this case we want to continue anyway,
+necause there is an opotunity that the value is valid, so we catch it and and condit it i n
+failing of both of them.
+We wanted to to create two readers - we denied it cause it doesnt make profit, and we needed to 
+pass a lot of information between them.
+We created a manager for every type-methods and variables. The classes are depends on each 
+other because  there are common checks. 

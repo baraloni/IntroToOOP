@@ -1,0 +1,106 @@
+baraloni
+baraloni
+bar aloni
+
+=============================
+= File description     =
+=============================
+README- this file
+
+parent package : fileprocessing: 
+1.DirectoryProcessor - runs the program, checks for valid program args.
+2.Parser - reads the command file checks if it's format is valid,
+			and able to print it according to program demends.
+3. Section - holds information about a section of text. solves type 1 exceptions. 
+
+package : filter:
+1.FilterFactory - creates valid filtering methods, according to input (valid or not).
+2. package : filterexceptions
+	1. FilterException - parent to:
+	2. FilterNameException -  holds warning of bad filter name.
+	3. FilterParametersException -  holds warning of bad filter param.
+
+package: order:
+1. OrderFactory - creates valid sorting methods, according to input (valid or not).
+2. package: orderexceptions 
+	1. OrderExceptions - parent to:
+	2. OrderNameException - holds warning of bad order name.
+
+package: formatexceptions:
+1. FormatExceptions - parent to all:
+2. BadSectionNameException - holds error information: bad sectionName
+3. BadSectionFormatException - parent to:
+	4. MissingFilterException- holds error information:no FILTER sub section
+	5. MissingOrderException- holds error information: no ORDER sub section
+6. InvalidUsageException -  holds error information: wrong number of progarm arguments 
+7. IOExceptions : parent to:
+	8. FileNotExistException - holds error information: commandfile not exist
+	9. CommadFileTypesEXception- holds error information: bad command file:isnt a file, not readable... 
+
+
+=============================
+=          Design           =
+=============================
+1. Modulatity:
+	each task the program needs to execute has its own class.
+	(see File description). furthermore, i tried to make them not depended of each other.
+	the main works with parser, which sends and recieves data from section. the sectiob controlls
+	the Factories.
+2. Single Choice:
+	using the Factories, combined with Comparator or Predicate, concentrate all filter
+	or order methods modifications in Factories.
+	Using constants( SUFFIX, MARK..) also support single choice, change in command file
+	syntax can be easily modifies.
+3. Factory: 
+	(Predicate and Comparator) rather then build many extending classes, saves memory and is open to expenting.
+4.	Exception handeling:
+		expleined in answers to questions 2.
+
+=============================
+=  Implementation details   =
+=============================
+all written.
+
+
+=============================
+=    Answers to questions   =
+=============================
+1. Explain all your design choices in detail.
+	answered in Design.
+	
+2. Describe the exceptions hierarchy you used in order to handle errors in the program. 
+Explain the considerations that made you choose that specific design. 
+	the hirarcy schem is shown in file description.
+	
+	type 1 exceptions:
+	are meant to give the user line number. the section holdes the line
+	number of the filterexpression  and line number of the orderexpression. therefore the
+	section needs to know what caused the exception: in order to print the right line number.
+	therefore  i divided it to filterExceptions and OrderExceptions, each one is in an inside
+	package of filter and order, which is more logical anyway.
+	
+	type 2 Exceptions:
+	are handeled by main, so they are in  an innre package in fileproccessing.
+	all are format exceptions so they inherite from FormatExceptions.
+	the FormatExceptions has a function that prints the Exception.
+	therefore all classes that inherite from it: prints it's Exception in a unified Syntax.
+	it is also easier to use: define all exceptions to use this super method.
+	because all need to give the user an informative msg expleining what went wrong,
+	the sub classes are divided by occurences.
+	exp: BadSectionFormatException is parent to MissingOrderException or MissingFilterException.
+		each one holds a more specific description of the Exception. so if anoter subsection will be added
+		we can expend it. or if we decide we want to handel it differently, it is also easier to change (
+		override the super method, in BadSectionFormatException).
+		
+	
+3. How did you sort your matched files? Did you use a data structure for this purpose? 
+If so, what data structure and why?
+	I used Comperator , and functional programming, in OrderFactory to create an object
+	that holds a sorting method that matches the expression writem in file.
+	this way support expending, single choice.
+	this method is applied on a List<File> object that holds a List of filtered Files,
+	is is implemeted this way because it is easy to get all files (not directories), 
+	that are in a directory, into a List. and a list is easy to filter and sort with
+	Predicate and Comparator objects. 
+	 
+ 

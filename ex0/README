@@ -1,0 +1,43 @@
+baraloni
+
+Bar Aloni
+
+
+=============================
+=      File description     =
+=============================
+Law.java:
+a Class that represnts a law that has : a title, an initiator, publication year, and asociated party. 
+the law is evaluated in 3 fields: social, political and economical.
+KnessetMembers can support it, and remove their support.
+
+KnessetMember.java: class that represents a Knsseet member.
+KnessetMember has first and last name, and political, social and economical tendencies. 
+also has a treshold of interest. a Knesset Member can evalueted a given law to reflect his interest in it, 
+and choose wheter to support it or not.
+
+Assembly.java:
+represents Knesset Assembly. an assembly keeps records of the participating KnessetMembers and laws presented.
+it conducts surveys to every law presented, suggests a law to a KnessetMembers based on their tendincies, 
+and register a Knesstmember to support a law.
+ 
+
+
+=============================
+=          Design           =
+=============================
+I desinged each type as a seperate class, working toghther.
+
+
+
+=============================
+=  Implementation details   =
+=============================
+  
+i chosse to implement the law's supporters count an an int vaiable because there wasnt a demand in Assembly to
+remove knesset member support, or restriction of the number of times a KnessetMembe can support a certain law
+in one assembly or several. 
+
+=============================
+=    Answers to questions   =
+=============================
